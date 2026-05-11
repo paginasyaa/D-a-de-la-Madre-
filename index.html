@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ana - La Mejor Mamá del Mundo 💖🇺🇾</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecaca 100%);
+            --secondary-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --accent-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+            --shadow-hover: 0 20px 60px rgba(255, 107, 157, 0.3);
+            --text-primary: #4a5568;
+            --text-secondary: #718096;
+            --text-accent: #e53e3e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #e2e8f0 50%, #fef3c7 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Floating Hearts */
+        .floating-heart {
+            position: fixed;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            pointer-events: none;
+            z-index: 1000;
+            animation: float 8s linear infinite;
+            user-select: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            background: var(--primary-gradient);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="%23ffffff" opacity="0.1"><animate attributeName="r" values="2;4;2" dur="4s" repeatCount="indefinite"/><animate attributeName="cy" values="25;35;25" dur="4s" repeatCount="indefinite"/></circle><circle cx="75" cy="75" r="2" fill="%23ffffff" opacity="0.1"><animate attributeName="r" values="2;4;2" dur="4s" repeatCount="indefinite" begin="2s"/><animate attributeName="cy" values="75;85;75" dur="4s" repeatCount="indefinite" begin="2s"/></circle></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: bounceIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: heartbeat 4s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.4s ease;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        /* Section */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 80px;
+            font-weight: 300;
+        }
+
+        /* Quotes Section */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .quote-card {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border-left: 5px solid #ff6b9d;
+            box-shadow: var(--shadow-light);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 6rem;
+            font-family: 'Playfair Display', serif;
+            color: #ff9a9e;
+            font-weight: 900;
+            opacity: 0.3;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            color: #ff6b9d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mate & Cumbia Section */
+        .special-section {
+            background: linear-gradient(135deg, #fff1f5 0%, #fce4ec 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .special-card {
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            position: relative;
+        }
+
+        .special-icon {
+            font-size: 5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            height: 320px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 30px 25px 25px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Music Buttons */
+        .music-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(255,107,157,0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .music-fab:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 20px 50px rgba(255,107,157,0.6);
+        }
+
+        .music-menu {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--shadow-light);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .music-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .music-btn {
+            display: block;
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .music-btn:last-child {
+            margin-bottom: 0;
+        }
+
+        .music-btn:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+        }
+
+        /* Scroll Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .special-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="glass-card hero-content">
+                <h1>¡Feliz Día de la Madre!</h1>
+                <p class="hero-subtitle">Para <strong>Ana</strong>, la mamá más increíble de Uruguay 🇺🇾<br>La que hace magia con amor, mate y cumbia 💖🧉🎶</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                        <div class="stat-number">3</div>
+                        <div>Hijos que te aman</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-mug-hot"></i></div>
+                        <div class="stat-number">∞</div>
+                        <div>Tazas de amor 🧉</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-music"></i></div>
+                        <div class="stat-number">100%</div>
+                        <div>Cumbia en el corazón 🎶</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-sparkles"></i></div>
+                        <div class="stat-number">✨</div>
+                        <div>Casa impecable</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Palabras que salen del corazón 💕</h2>
+            <p class="section-subtitle">Cada frase lleva el amor que sentimos por ti</p>
+            
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <div class="quote-text">“Gracias por nunca soltarnos la mano, aún cuando crecimos”</div>
+                    <div class="quote-author">Tus hijos</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">“El corazón de esta familia tiene tu nombre grabado”</div>
+                    <div class="quote-author">Con todo el amor</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">“Tu amor hace hogar, donde sea que estemos”</div>
+                    <div class="quote-author">Siempre agradecidos</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">“Cada mate compartido tiene tu amor dentro”</div>
+                    <div class="quote-author">Tu familia 💖</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">“Eres la fuerza silenciosa que mueve nuestro mundo”</div>
+                    <div class="quote-author">Para siempre</div>
+                </div>
+                <div class="quote-card">
+                    <div class="quote-text">“Tu risa es nuestra música favorita”</div>
+                    <div class="quote-author">Te amamos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Section: Mate & Cumbia -->
+    <section class="section special-section">
+        <div class="container">
+            <h2 class="section-title">La reina del mate y la cumbia 🧉🎶</h2>
+            <div class="special-content">
+                <div class="special-card">
+                    <div class="special-icon"><i class="fas fa-mug-hot"></i></div>
+                    <h3>Reina del Mate</h3>
+                    <p>Esos mates que preparas con tanto amor son el alma de nuestras tardes. Cada sorbo lleva tu cariño y calidez.</p>
+                </div>
+                <div class="special-card">
+                    <div class="special-icon"><i class="fas fa-music"></i></div>
+                    <h3>Reina de la Cumbia</h3>
+                    <p>Tu alegría al bailar cumbia ilumina la casa. ¡Eres pura fiesta y felicidad en cada paso!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Momentos que siempre vamos a recordar ✨</h2>
+            <p class="section-subtitle">Cada foto guarda un pedacito de tu amor infinito</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/D6Al1BQ.jpg" alt="Ana feliz">
+                    <div class="gallery-overlay">
+                        <h4>¡Siempre radiante! 💖</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/Qjfc5CW.jpg" alt="Familia">
+                    <div class="gallery-overlay">
+                        <h4>Amor en familia</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/EnVSOrn.jpg" alt="Sonrisa">
+                    <div class="gallery-overlay">
+                        <h4>Tu sonrisa mágica ✨</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/OuIJap8.jpg" alt="Mate">
+                    <div class="gallery-overlay">
+                        <h4>Momentos con mate 🧉</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/leeZO3r.jpg" alt="Amor">
+                    <div class="gallery-overlay">
+                        <h4>Puro amor maternal</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/BGUVddj.jpg" alt="Hijos">
+                    <div class="gallery-overlay">
+                        <h4>Tus 3 tesoros 💎</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/jV0FQQa.jpg" alt="Felicidad">
+                    <div class="gallery-overlay">
+                        <h4>Felicidad pura</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/4XySmwr.jpg" alt="Orden">
+                    <div class="gallery-overlay">
+                        <h4>Casa impecable ✨</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/jsCAOGe.jpg" alt="Cumbia">
+                    <div class="gallery-overlay">
+                        <h4>¡A gozar la cumbia! 🎶</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/2QWT1nC.jpg" alt="Uruguay">
+                    <div class="gallery-overlay">
+                        <h4>Orgullo uruguayo 🇺🇾</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/SLLQG53.jpg" alt="Madre">
+                    <div class="gallery-overlay">
+                        <h4>La mejor mamá</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://i.imgur.com/KueESBz.jpg" alt="Amor eterno">
+                    <div class="gallery-overlay">
+                        <h4>Amor eterno 💕</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Button -->
+    <button class="music-fab" id="musicToggle">
+        <i class="fas fa-music"></i>
+    </button>
+    <div class="music-menu" id="musicMenu">
+        <a href="https://www.youtube.com/live/fA2hlsnw6fE?si=74nCClJCUoU3dQfS" target="_blank" class="music-btn">🎶 Cumbia en vivo</a>
+        <a href="https://www.youtube.com/live/SokwY2AWzDo?si=qbIbuklkhm7v4h2f" target="_blank" class="music-btn">🔥 Tema especial</a>
+        <a href="https://youtube.com/playlist?list=RD_jvx0ZwfCC8&playnext=1&si=as3sW63EhjMNA8Vh" target="_blank" class="music-btn">📱 Playlist 1</a>
+        <a href="https://youtube.com/playlist?list=RDD9W4DLjmoOM&playnext=1&si=xIGgZnpn5qY9xqS-" target="_blank" class="music-btn">💃 Playlist 2</a>
+    </div>
+
+    <!-- Scroll Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['💖', '💕', '💗', '✨', '🌸'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            heart.style.opacity = Math.random() * 0.6 + 0.3;
+            document.getElementById('hearts-container').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 9000);
+        }
+
+        setInterval(createHeart, 2000);
+        createHeart(); // Initial heart
+
+        // Music Menu Toggle
+        const musicToggle = document.getElementById('musicToggle');
+        const musicMenu = document.getElementById('musicMenu');
+        
+        musicToggle.addEventListener('click', () => {
+            musicMenu.classList.toggle('show');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!musicToggle.contains(e.target) && !musicMenu.contains(e.target)) {
+                musicMenu.classList.remove('show');
+            }
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.glass-card, .quote-card, .special-card, .stat-item, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(60px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            observer.observe(el);
+        });
+
+        // Scroll Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            scrollTop.classList.toggle('show', window.scrollY > 400);
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Gallery hover sound effect (visual only)
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
